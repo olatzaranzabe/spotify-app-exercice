@@ -8,6 +8,7 @@ En esta práctica, el objetivo será crear una pequeña app de música, tanto en
 ### Requisitos
 
 ```
+- fork del repositorio
 - clona el repositorio.
 - npm i
 ```
