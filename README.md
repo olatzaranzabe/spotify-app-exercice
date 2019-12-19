@@ -217,3 +217,6 @@ Crea tanta rutas como quieras y añade funcionalidades a la aplicación, como un
 Añade estas funcionalidades al navbar para que nuestro usuario puede navegar y utilizarlas.
 
 Se libre de utilizar el diseño que quieras. 
+
+
+__Happy codding!__ 
