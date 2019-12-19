@@ -9,7 +9,7 @@ En esta práctica, el objetivo será crear una pequeña app de música, tanto en
 
 ```
 - clona el repositorio.
-- haz `npm i`
+- npm i
 ```
 
 Después de esto, deberás registrarte en spotify (si no lo has hecho ya) para poder obtener tus credenciales para la api. 
@@ -177,7 +177,7 @@ Deberá devolver la vista que crearemos a continuación con la lista de cancione
 
 ### album view. 
 
-Ahora deberás crear una vista que imprima la lista de canciones del álbum que hayamos seleccionado. 
+Ahora tendrás crear una vista que imprima la lista de canciones del álbum que hayamos seleccionado. 
 
 Deberá imprimir, al menos, el `TÍTULO` de la canción y una etiqueta audio con la previsualización de la canción. 
 
@@ -193,7 +193,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
 
 ### Ruta not found. 
 
-Crear una ruta para cuando la ruta no existe que renderice un html que de un error 404. 
+Crear una ruta para que, si la ruta no existe, renderice un html con un error 404. 
 
 ### Control de errores para cada endpoint. 
 
@@ -217,3 +217,6 @@ Crea tanta rutas como quieras y añade funcionalidades a la aplicación, como un
 Añade estas funcionalidades al navbar para que nuestro usuario puede navegar y utilizarlas.
 
 Se libre de utilizar el diseño que quieras. 
+
+
+__Happy codding!__ 
