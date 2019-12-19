@@ -177,7 +177,7 @@ Deberá devolver la vista que crearemos a continuación con la lista de cancione
 
 ### album view. 
 
-Ahora deberás crear una vista que imprima la lista de canciones del álbum que hayamos seleccionado. 
+Ahora tendrás crear una vista que imprima la lista de canciones del álbum que hayamos seleccionado. 
 
 Deberá imprimir, al menos, el `TÍTULO` de la canción y una etiqueta audio con la previsualización de la canción. 
 
