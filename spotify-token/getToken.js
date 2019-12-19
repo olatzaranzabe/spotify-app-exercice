@@ -1,7 +1,7 @@
 const request = require("request")
 
-let client_id = process.env.client_id;
-let client_secret = process.env.client_secret;
+let client_id = process.env.CLIENT_ID;
+let client_secret = process.env.CLIENT_SECRET;
 
 module.exports =  () => {
 return new Promise((resolve, reject)=>{
