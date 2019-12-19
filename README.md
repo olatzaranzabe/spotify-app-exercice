@@ -9,7 +9,7 @@ En esta práctica, el objetivo será crear una pequeña app de música, tanto en
 
 ```
 - clona el repositorio.
-- haz `npm i`
+- npm i
 ```
 
 Después de esto, deberás registrarte en spotify (si no lo has hecho ya) para poder obtener tus credenciales para la api. 
