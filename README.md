@@ -193,7 +193,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
 
 ### Ruta not found. 
 
-Crear una ruta para cuando la ruta no existe que renderice un html que de un error 404. 
+Crear una ruta para que, si la ruta no existe, renderice un html con un error 404. 
 
 ### Control de errores para cada endpoint. 
 
