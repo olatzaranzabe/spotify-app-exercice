@@ -22,9 +22,13 @@ Después de esto, deberás registrarte en spotify (si no lo has hecho ya) para p
 4. Rellena los formularios. 
 5. Cuando se haya creado el proyecto, clicka sobre él y recoge tus credenciales: 
 
-    - client_id
-    - client_secret
+    - CLIENT_ID
+    - CLIENTE_SECRET
 6. Añadelas al archivo .env
+
+
+Esto servirá para que, cuando se recoja el token, haga uso de vuestras credenciales. 
+
 ## Iteración 1. Vistas de autenticación
 
 Crea una vista para signup y login.
@@ -52,16 +56,19 @@ Crea una vista para el login con los siguientes campos:
     - password
 
 ```
+__Nota:__ si prefieres un registro por username, también puedes hacerlo. Incluso, si quieres, puedes intentar hacer uno que recoja amdas opciones! 
+
 
 El formulario deberá integrar una petición POST al endpoint /auth/login
 
 ## Iteración 2. Rutas de autenticación. 
 
 Crea las rutas de login, signup y logout, para autenticar los usuarios de la aplicación. 
+Todos los datos tendrán que ser guardados y recogidos de mongoDB, con el respectivo Schema de mongoose.
 
 ### Signup route.
 
-La ruta signup recogerá a través del body los siguientes datos:
+La ruta signup recogerá, a través del body, los siguientes datos:
 
 ```
     - name.
@@ -75,7 +82,7 @@ Exacto. Los mismo que se envían en el formulario...
 
 Recuerda dar la opción al usuario de poder loggearse si ya tiene una cuenta (crea una etiqueta que redirija a la ruta /login)
 
-Si el proceso es exitoso, se habilitará automáticamente el login del usuario y deberá redirigir a la ruta `/home`de las vistas. 
+Si el proceso es exitoso, se habilitará automáticamente el login del usuario y deberá redirigir a la ruta `/home` de las vistas. 
 
 
 ### login route. 
@@ -97,7 +104,7 @@ Recuerda dar la opción al usuario de poder registrarse si aun no tiene una cuen
 
 Crea una ruta que permita al usuario hacer logout y cierre la sesión. 
 
-Si el proceso es exitoso se redirigirá a la ruta `/login``
+Si el proceso es exitoso se redirigirá a la ruta `/login`
 
 
 ## Iteración 3. Home.
@@ -106,19 +113,20 @@ Crea la vista home.
 
 En esta vista se deberá mostrar un mensaje de bienvenida que incluya al menos el nombre del usuario. 
 
-La ruta que envía la vista deberá de estar securizada con un sistema de autorización. 
+La ruta que envía la vista tendrá que estar securizada con un sistema de autorización. 
 
 Más adelante completaremos esta vista. 
 
 ## Iteración 4. Layout. 
 
-No queremos repetir código. Por ello, deberás crear un layout que contenga todos los elementos repetidos. 
+No queremos repetir código. Por ello, deberás crear un layout.
 
+Se libre de introducir aquí aquellos elementos que consideres útiles para todas (o casi todas) las vistas. 
 ### navbar
 
 Crea un navbar compartido a las rutas de acceso. Deberá tener al menos una ruta `home` y una ruta `logout`. 
 
-__BONUS__ ¿Se te ocurre como podríamos hacer para no mostrar el navbar en signup y login?
+__BONUS__ ¿Se te ocurre como podrías hacer para no mostrar el navbar en signup y login?
 
 ## Iteración 5. Spotify
 
