@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
     const { email, password } = req.body;
+    console.log(email);
 
     try {
         const userEmail = await User.findOne({ email });
@@ -18,12 +19,24 @@ router.post("/", async (req, res) => {
                 .status(404)
                 .json({ message: "no se ha encontrado ningún usuario" });
         const passwordBD = userEmail.password;
+        console.log(userEmail.password);
+        const hashPass = await bcrypt.compareSync(password, passwordBD);
 
-        const comparePassword = await bcrypt.compareSync(password, passwordBD);
-
-        if (!comparePassword)
+        if (!hashPass)
             return Response.render("login", {
                 error: "la contraseña no es correcta"
             });
-    } catch (error) {}
+
+        try {
+            response.render("/login/view");
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: "Hubo un error" });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Hubo un error" });
+    }
 });
+
+module.exports = router;

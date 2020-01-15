@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
     try {
         const hashPass = bcrypt.hashSync(password, 10);
 
-        const user = new User({ email, password: hashPas });
+        const user = new User({ email, password: hashPass });
         await user.save();
     } catch (error) {
         res.render("signup", { error: "Hay un error" });
