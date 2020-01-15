@@ -13,15 +13,17 @@ router.post("/", async (req, res) => {
 
     try {
         const userEmail = await User.findOne({ email });
+        console.log(userEmail);
+        if (!userEmail) {
+            res.status(404).json({
+                message: "no se ha encontrado ningún usuario"
+            });
+        }
 
-        if (!userEmail)
-            return res
-                .status(404)
-                .json({ message: "no se ha encontrado ningún usuario" });
         const passwordBD = userEmail.password;
         console.log(userEmail.password);
         const hashPass = await bcrypt.compareSync(password, passwordBD);
-
+        console.log(hashPass);
         if (!hashPass)
             return Response.render("login", {
                 error: "la contraseña no es correcta"
@@ -29,6 +31,12 @@ router.post("/", async (req, res) => {
 
         try {
             response.render("/login/view");
+            const token = jwt.sign(
+                JSON.stringify(payload),
+                process.env.JWT_SECRET
+            );
+            console.log(process.env.JWT_SECRET);
+            return res.status(200).render("login", { token });
         } catch (error) {
             console.log(error);
             res.status(500).json({ error: "Hubo un error" });
