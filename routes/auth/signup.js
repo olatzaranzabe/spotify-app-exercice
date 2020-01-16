@@ -8,9 +8,8 @@ router.post("/", async (req, res) => {
     const { name, lastname, username, email, password } = req.body;
 
     try {
-        const user = await user.findOne({ email });
-        if (email)
-            return res.render("signup", { error: "email ya registrado" });
+        const user = await User.findOne({ email });
+        if (user) return res.status(409).json({ error: "email ya registrado" });
     } catch (error) {
         return res.render("signup", { message: "Hay un error" });
     }
@@ -26,7 +25,7 @@ router.post("/", async (req, res) => {
         await user.save();
 
         return res.status(200).json({
-            message: `${user}, tu usuario ha sido creado correctamente`
+            message: `${user.name}, tu usuario ha sido creado correctamente`
         });
     } catch (error) {
         return res.render("signup", { error: "Hay un error" });
