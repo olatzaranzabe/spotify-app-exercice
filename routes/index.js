@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
+const { isAuthenticated } = require("../middlewares/authentication");
 
+router.get("/", isAuthenticated, (req, res, next) => {
+    console.log("autorizado");
+    res.json({ message: "Autorizado" });
+});
 router.get("/login", (req, res) => {
     res.render("login");
 });
@@ -9,4 +13,6 @@ router.get("/login", (req, res) => {
 router.get("/signup", (req, res) => {
     res.render("signup");
 });
+
+router.use("/auth", require("./auth"));
 module.exports = router;

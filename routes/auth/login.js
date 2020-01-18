@@ -10,11 +10,9 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
     const { email, password } = req.body;
-    console.log(email);
 
     try {
         const userDB = await User.findOne({ email });
-        console.log(userDB);
         if (!userDB) {
             return res.status(404).json({
                 message: "no se ha encontrado ningún usuario"

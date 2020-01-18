@@ -11,9 +11,12 @@ const DB_PORT = process.env.DB_PORT;
 const hbs = require("hbs");
 const LocalStrategy = require("passport-local").Strategy;
 
-const JwtStrategy = require("passport-jwt").ExtractJwt;
+const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
+const session = require("express-session");
+
 const bcrypt = require("bcryptjs");
+var indexRouter = require("./routes/index");
 
 app.use(Express.static(__dirname + "/public"));
 app.set("views", __dirname + "/views");
@@ -28,35 +31,37 @@ app.use("/signup", require("./routes/auth/signup"));
 app.use(passport.initialize());
 
 passport.use(
-    new LocalStrategy({
-        usernameField: "email",
-        passwordField: "password",
-        session: false
-    }),
-    async (email, password, next) => {
-        console.log(
-            `Estrategia local. Información recibida: email ${email}, password${password}`
-        );
+    new LocalStrategy(
+        {
+            usernameField: "email",
+            passwordField: "password",
+            session: false
+        },
+        async (email, password, next) => {
+            console.log(
+                `Estrategia local. Información recibida: email ${email}, password${password}`
+            );
 
-        try {
-            const user = await User.findOne({ email });
+            try {
+                const user = await User.findOne({ email });
 
-            if (!user) {
-                next(null, false, { message: "not found" });
+                if (!user) {
+                    next(null, false, { message: "not found" });
+                }
+
+                if (!bcrypt.compareSync(password, user.password)) {
+                    next(null, false, {
+                        message: "la contraseña no es correcta"
+                    });
+                }
+
+                next(null, user);
+            } catch (error) {
+                console.log(error);
+                next(error);
             }
-
-            if (!bcrypt.compareSync(password, user.password)) {
-                next(null, false, {
-                    message: "la contraseña no es correcta"
-                });
-            }
-
-            next(null, user);
-        } catch (error) {
-            console.log(error);
-            next(error);
         }
-    }
+    )
 );
 
 const opts = {
@@ -80,7 +85,10 @@ passport.use(
         }
     })
 );
-app.use(function(req, res, next) {
+
+app.use("/", indexRouter);
+
+app.use((req, res, next) => {
     res.status(404).json({ message: "Not found" });
 });
 
